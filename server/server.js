@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost/carrental', {
+mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.0.2', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -28,3 +28,6 @@ app.use('/api/cars', require('./routes/cars'));
 const authRoutes = require('./routes/auth');
 
 app.use('/api/auth', authRoutes);
+
+app.use('/api/crud', require('./routes/crud'));
+
